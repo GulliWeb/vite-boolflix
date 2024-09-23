@@ -10,7 +10,6 @@ export default {
 
 <template>
     <h2>CIAO, IO SONO IL MAIN</h2>
-
 </template>
 
 <style scoped>
