@@ -9,10 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "awesome": "^0.0.7",
+    "axios": "^1.7.7",
+    "bootstrap": "^5.3.3",
+    "font": "^0.0.4",
     "vue": "^3.4.37"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.2",
+    "sass-embedded": "^1.79.3",
     "vite": "^5.4.1"
   }
 }
