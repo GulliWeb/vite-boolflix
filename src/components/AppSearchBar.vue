@@ -104,7 +104,7 @@ export default {
     </div>
     <div class="right d-flex align-items-center justify-content-end">
       <div class="input d-flex align-items-center">
-        <input v-if="isSearchVisible" type="text" id="txtSearch" v-model="inputSearch" @keyup.enter="apiCall">
+        <input v-if="isSearchVisible" type="text" placeholder="Titoli, Serie tv.." id="txtSearch" v-model="inputSearch" @keyup.enter="apiCall">
         <i id="btnSearch" class="fas fa-search" @click="apiCall" @mouseenter=" toggleSearch" ></i>
         <figure id="profile-avatar">
           <img src="../assets/img/netflix-profile-pictures-1000-x-1000-2fg93funipvqfs9i.jpg" alt="">
@@ -117,6 +117,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+body{
+  font-family: 'Roboto';
+}
+
 .nav{
   width: 100%;
   height: 50px;
@@ -154,8 +158,13 @@ ul li a:active{
   color: #E50914;
   letter-spacing: -2px;
   text-transform: uppercase;
+  transition: transform 0.3s ease;
 }
 
+#title-logo:hover{
+  transform: scale(1.1) rotate(5deg);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); 
+}
 // RIGHT
 .right{
   flex-grow: 1;
@@ -197,8 +206,9 @@ img:active {
   transform: scale(0.95);
 }
 
-.input{
-  justify-content: end;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+input{
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid white
 }
 </style>
