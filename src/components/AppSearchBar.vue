@@ -90,13 +90,9 @@ export default {
     }
    },
    getIntVote(vote) {
-   const starCount = Math.round(vote) / 2;
-   const stars = []
-
-   for (let i = 0; i < starCount.length; i++) {
-    stars.push(i + 1)
-   }
-   return stars
+    let starCount = 0
+    starCount = Math.round(vote) / 2;
+    return starCount
    }
 },
   
@@ -117,9 +113,10 @@ export default {
       <p>{{ film.original_title }}</p>
       <p>{{ film.original_language }} - {{ setFlag(film.original_language) }}</p> 
       <p>{{ film.vote_average }}</p> 
+      <div class="fas fa-star"></div>
       <div>
         <!-- Ciclo per stampare le stelle per i film -->
-        <i v-for="n in getIntVote(film.vote_average)" :key="n" class="fas fa-star"></i>
+        <i v-for="n in 5" :key="n" class="fa-star" :class="(n <= getIntVote(film.vote_average)) ? 'fas' : 'far' "></i>
       </div>
     </li>
   </ul>
@@ -134,7 +131,7 @@ export default {
       <p>{{ getIntVote(serie.vote_average) }}</p> 
       <div>
         <!-- Ciclo per stampare le stelle per le serie TV -->
-        <i v-for="n in getIntVote(serie.vote_average)" :key="n" class="fas fa-star"></i>
+        <i v-for="n in 5" :key="n" class="fa-star" :class="(n <= getIntVote(serie.vote_average)) ? 'fas' : 'far' " ></i>
       </div>
     </li>
   </ul>
