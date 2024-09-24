@@ -88,13 +88,19 @@ export default {
       default:
         return 'Lingua non riconosciuta';
     }
-   }  
-  },
-      //Metodo per visualizzare correttamente l'immagine di copertina dei film e serie tv 
-      getImage(imageUrl){
-        return console.log(imageUrl)
-      },
-}   
+   },
+   getIntVote(vote) {
+   const starCount = Math.round(vote) / 2;
+   const stars = []
+
+   for (let i = 0; i < starCount.length; i++) {
+    stars.push(i + 1)
+   }
+   return stars
+   }
+},
+  
+}
 </script>
 
 <template>
@@ -102,22 +108,34 @@ export default {
     <input type="text" id="txtSearch" v-model="inputSearch" @keyup.enter="apiCall">
     <button id="btnSearch" class="btn btn-primary" @click="apiCall">Search</button>
   </div>
+
+  <!-- Lista Film -->
   <ul>
     <li v-for="film in films" :key="film.id">
-      <img :src=getImage(film.poster_path) alt="">
+      <img :src="`https://image.tmdb.org/t/p/w342${film.poster_path}`" alt="Poster">
       <h2>{{ film.title }}</h2>
       <p>{{ film.original_title }}</p>
       <p>{{ film.original_language }} - {{ setFlag(film.original_language) }}</p> 
-      <p>{{ film.vote_average }}</p>
+      <p>{{ film.vote_average }}</p> 
+      <div>
+        <!-- Ciclo per stampare le stelle per i film -->
+        <i v-for="n in getIntVote(film.vote_average)" :key="n" class="fas fa-star"></i>
+      </div>
     </li>
   </ul>
-  <!-- Tv series -->
+
+  <!-- Lista Serie TV -->
   <ul>
     <li v-for="serie in tvSeries" :key="serie.id">
+      <img :src="`https://image.tmdb.org/t/p/w342${serie.poster_path}`" alt="Poster">
       <h2>{{ serie.name }}</h2>
       <p>{{ serie.original_name }}</p>
-      <p>{{ serie.original_language }} - {{ setFlag(serie.original_language) }}</p> 
-      <p>{{ serie.vote_average }}</p>
+      <p>{{ setFlag(serie.original_language) }}</p> 
+      <p>{{ getIntVote(serie.vote_average) }}</p> 
+      <div>
+        <!-- Ciclo per stampare le stelle per le serie TV -->
+        <i v-for="n in getIntVote(serie.vote_average)" :key="n" class="fas fa-star"></i>
+      </div>
     </li>
   </ul>
 </template>
