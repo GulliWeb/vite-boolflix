@@ -16,18 +16,15 @@ export default {
       // Chiave API
       apiKey: 'a56a2d66f4601fa8078c3613712c7ef2',
       // Variabile per l'input mandato dalla textBox
-      inputSearch: ""
+      inputSearch: "",
+      isSearchVisible: false,
     };
   },
   methods: {
     // Metodo per effettuare una chiamata API per ricavare i vari film con le relative informazioni
     apiCall() {
       // Controllo che verifica se l'input è vuota
-      if (!this.inputSearch) {
-        alert('Attenzione! campo di ricerca vuoto.');
-        this.txtSearch.focus();  
-        return;
-      }
+      
       const apiUrl = `${this.apiFilmAddress}?api_key=${this.apiKey}&query=${this.inputSearch}`;
       const apiTvSeriesUrl = `${this.apiTvSeriesAddress}?api_key=${this.apiKey}&query=${this.inputSearch}`;
       // Chiamata tramite Axios film
@@ -85,6 +82,10 @@ export default {
       },
       getIntVote(vote) {
        return Math.round(vote) / 2;
+      },
+      // Metodo per mostrare e nascondere la barra di ricerca
+      toggleSearch(){
+       this.isSearchVisible = !this.isSearchVisible
       }
     },
   
@@ -92,14 +93,22 @@ export default {
 </script>
 
 <template>
-  <div class="nav">
-    <div class="left">
-      <h1 id="title-logo">BOOLFLIX</h1>
+  <div class="nav d-flex">
+    <div class="left d-flex align-items-center">
+      <h1 id="title-logo" class="mb-0">BOOLFLIX</h1>
+      <ul class="d-flex mb-0">
+        <li><a href="#">Home</a></li>
+        <li><a href="#tvSeries">Serie tv</a></li>
+        <li><a href="#film">Film</a></li>
+      </ul>
     </div>
-    <div class="right">
-      <div class="input">
-        <input type="text" id="txtSearch" v-model="inputSearch" @keyup.enter="apiCall">
-        <button id="btnSearch" class="btn btn-primary" @click="apiCall">Search</button>
+    <div class="right d-flex align-items-center justify-content-end">
+      <div class="input d-flex align-items-center">
+        <input v-if="isSearchVisible" type="text" id="txtSearch" v-model="inputSearch" @keyup.enter="apiCall">
+        <i id="btnSearch" class="fas fa-search" @click="apiCall" @mouseenter=" toggleSearch" ></i>
+        <figure id="profile-avatar">
+          <img src="../assets/img/netflix-profile-pictures-1000-x-1000-2fg93funipvqfs9i.jpg" alt="">
+        </figure>
       </div>
     </div>
   </div>
@@ -109,9 +118,34 @@ export default {
 
 <style lang="scss" scoped>
 .nav{
-  padding: 10px 30px;
+  width: 100%;
   height: 50px;
   background-color: black;
+}
+
+// LEFT
+.left, .right{
+  padding-left:30px;
+}
+
+ul li{
+  list-style-type: none;
+}
+
+ul li a {
+  font-size: 14px;
+  text-decoration: none;
+  color: #fff;
+  margin-right: 25px;
+}
+
+ul li a:hover{
+  color: lightgray;
+  cursor: pointer;
+}
+
+ul li a:active{
+  color: #fff;
 }
 
 #title-logo{
@@ -120,5 +154,51 @@ export default {
   color: #E50914;
   letter-spacing: -2px;
   text-transform: uppercase;
+}
+
+// RIGHT
+.right{
+  flex-grow: 1;
+  padding-right: 30px;
+}
+
+.right i{
+  font-size: 25px;
+  color: #fff;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.right i:hover{
+  cursor: pointer;
+  color: lightgray;
+}
+
+.right i:active{
+  color: #fff;
+}
+
+#profile-avatar{
+  margin-bottom: 0;
+  max-width: 35px;
+}
+
+img{
+  max-width: 100%;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+img:hover{
+  transform: scale(1.1)
+}
+
+img:active {
+  transform: scale(0.95);
+}
+
+.input{
+  justify-content: end;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 </style>
