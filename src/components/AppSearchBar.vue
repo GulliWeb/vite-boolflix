@@ -112,8 +112,6 @@ export default {
       <h2>{{ film.title }}</h2>
       <p>{{ film.original_title }}</p>
       <p>{{ film.original_language }} - {{ setFlag(film.original_language) }}</p> 
-      <p>{{ film.vote_average }}</p> 
-      <div class="fas fa-star"></div>
       <div>
         <!-- Ciclo per stampare le stelle per i film -->
         <i v-for="n in 5" :key="n" class="fa-star" :class="(n <= getIntVote(film.vote_average)) ? 'fas' : 'far' "></i>
@@ -127,8 +125,7 @@ export default {
       <img :src="`https://image.tmdb.org/t/p/w342${serie.poster_path}`" alt="Poster">
       <h2>{{ serie.name }}</h2>
       <p>{{ serie.original_name }}</p>
-      <p>{{ setFlag(serie.original_language) }}</p> 
-      <p>{{ getIntVote(serie.vote_average) }}</p> 
+      <p>{{ setFlag(serie.original_language) }}</p>  
       <div>
         <!-- Ciclo per stampare le stelle per le serie TV -->
         <i v-for="n in 5" :key="n" class="fa-star" :class="(n <= getIntVote(serie.vote_average)) ? 'fas' : 'far' " ></i>
