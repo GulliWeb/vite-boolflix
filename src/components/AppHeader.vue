@@ -13,7 +13,6 @@ export default {
 </script>
 
 <template>
-    <h1>CIAO, IO SONO L'HEADER</h1>
     <AppSearchBar/>
 </template>
 
