@@ -89,9 +89,12 @@ export default {
         return 'Lingua non riconosciuta';
     }
    }  
-  }
-}
-    
+  },
+      //Metodo per visualizzare correttamente l'immagine di copertina dei film e serie tv 
+      getImage(imageUrl){
+        return console.log(imageUrl)
+      },
+}   
 </script>
 
 <template>
@@ -101,6 +104,7 @@ export default {
   </div>
   <ul>
     <li v-for="film in films" :key="film.id">
+      <img :src=getImage(film.poster_path) alt="">
       <h2>{{ film.title }}</h2>
       <p>{{ film.original_title }}</p>
       <p>{{ film.original_language }} - {{ setFlag(film.original_language) }}</p> 
