@@ -1,15 +1,19 @@
 <script>
+import AppFilmCards from './AppFilmCards.vue';
 export default {
   data() {
     return {
-      
+
     }
+  },
+  components:{
+    AppFilmCards,
   }
 }
 </script>
 
 <template>
-    <h2>CIAO, IO SONO IL MAIN</h2>
+    <AppFilmCards/>
 </template>
 
 <style scoped>
