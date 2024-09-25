@@ -183,6 +183,13 @@ p {
   opacity: 0; 
   transition: opacity 0.3s ease, transform 0.3s ease; 
   backdrop-filter: blur(5px);
+  overflow: auto
+}
+
+.text-container {
+  max-height: 100px; 
+  overflow: auto; 
+  text-align: center; 
 }
 
 .card:hover .overlay {
