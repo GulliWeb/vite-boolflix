@@ -57,6 +57,10 @@
 
 6.	Open your browser at http://localhost:8080.
 
+## 📹 Video Demo
+
+Watch the Boolflix presentation video (https://vimeo.com/manage/videos/1017172613)
+
 ## 🎯 Usage
 
   1. Use the search bar to input the name of a movie or TV series.		
